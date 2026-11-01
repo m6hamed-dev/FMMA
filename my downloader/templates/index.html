@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>منصة التحميل الشاملة</title>
+    <style>
+        body {
+            background-color: #f0f2f5;
+            font-family: Tahoma, sans-serif;
+            text-align: center;
+            padding-top: 40px;
+            transition: 0.3s;
+        }
+        /* تصميم الوضع المظلم (Dark Mode) */
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        body.dark-mode .box {
+            background: #1e1e1e;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        body.dark-mode h2, body.dark-mode label {
+            color: #ffffff;
+        }
+        body.dark-mode input[type="text"], body.dark-mode select {
+            background: #2d2d2d;
+            color: #fff;
+            border-color: #444;
+        }
+        body.dark-mode .platform-badge {
+            background: #333;
+            color: #bbb;
+        }
+
+        .box {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            width: 550px;
+            transition: 0.3s;
+        }
+        h2 { color: #333; margin-bottom: 5px; }
+        p.subtitle { color: #666; font-size: 14px; margin-bottom: 20px; }
+        
+        /* زر تبديل الوضع المظلم */
+        .mode-toggle {
+            float: left;
+            background: #ddd;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .platforms {
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #888;
+        }
+        .platform-badge {
+            background: #e9ecef;
+            padding: 4px 10px;
+            border-radius: 12px;
+            margin: 0 3px;
+            display: inline-block;
+        }
+
+        /* خانة الرابط وأزرار التحكم */
+        .input-container {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 40px 12px 12px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            box-sizing: border-box;
+        }
+        input[type="text"]:focus { border-color: #007bff; }
+
+        .options-group {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+        label {
+            font-size: 14px;
+            color: #444;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            background: #fff;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        button.submit-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            transition: 0.3s;
+        }
+        button.submit-btn:hover { background-color: #218838; }
+
+        .status-box {
+            margin-top: 15px;
+            font-size: 13px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <!-- زر الوضع الليلي/الفاتح -->
+        <button class="mode-toggle" onclick="toggleMode()">🌙 وضع عيني</button>
+        
+        <h2>منصة تحميل الميديا</h2>
+        <p class="subtitle">أداة ذكية وآمنة للتحميل من جميع المنصات</p>
+        
+        <div class="platforms">
+            يدعم: 
+            <span class="platform-badge">يوتيوب</span>
+            <span class="platform-badge">فيسبوك</span>
+            <span class="platform-badge">إنستجرام</span>
+            <span class="platform-badge">تيك توك</span>
+        </div>
+
+        <!-- تم ربط الفورم بمسار البايثون /download وتحديد طريقة POST وإعطاء خانة الإدخال اسم url -->
+        <form action="/download" method="POST">
+            <div class="input-container">
+                <input type="text" name="url" id="urlInput" placeholder="الصق رابط الفيديو هنا..." required>
+            </div>
+
+            <div class="options-group">
+                <label for="quality">اختر الصيغة والجودة:</label>
+                <select id="quality" name="quality">
+                    <option value="best">أفضل جودة متاحة (HD)</option>
+                    <option value="720p">جودة 720p (عالية)</option>
+                    <option value="480p">جودة 480p (توفير الباقة)</option>
+                    <option value="mp3">تحويل إلى صوت فقط (MP3)</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">بدء التحميل الآن</button>
+        </form>
+
+        <div class="status-box" id="statusText">
+            النظام آمن وجاهز للتشغيل...
+        </div>
+    </div>
+
+    <script>
+        // دالة تبديل الوضع المظلم
+        function toggleMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+</html>
